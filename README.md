@@ -42,13 +42,13 @@ Then open <http://localhost:8080>.
 
 ## Hosting: GitHub Pages at www.mywar.film
 
-The site is published from the `main` branch of `github.com/elazaravramovits/my-war` by GitHub Pages. The `CNAME` file holds the custom domain, and `.nojekyll` tells GitHub to serve the files exactly as they are.
+The site is published from the `main` branch of `github.com/ElazarAvromi/my-war` by GitHub Pages. The `CNAME` file holds the custom domain, and `.nojekyll` tells GitHub to serve the files exactly as they are.
 
 ### DNS records (set these at your domain registrar)
 
 | Type  | Host / Name | Value |
 |-------|-------------|-------|
-| CNAME | `www` | `elazaravramovits.github.io` |
+| CNAME | `www` | `elazaravromi.github.io` |
 | A     | `@` | `185.199.108.153` |
 | A     | `@` | `185.199.109.153` |
 | A     | `@` | `185.199.110.153` |
