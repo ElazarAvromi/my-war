@@ -507,7 +507,12 @@ html.intro-pending .hero__title img { --sweep: -8%; }
   gap: clamp(14px, 3vw, 48px);
 }
 .timeline__item { position: relative; display: flex; flex-direction: column; align-items: center; }
-.timeline__item .polaroid { width: 100%; max-width: 128px; }
+.timeline__item .polaroid {
+  width: 100%; max-width: 128px;
+  /* own compositing layer: the rough-edge SVG filter is rasterised once instead of every frame */
+  will-change: transform, opacity;
+}
+.timeline__item > .hand { will-change: transform, opacity; }
 .timeline__item .polaroid img:not(.tape) { aspect-ratio: 3 / 4; object-fit: cover; }
 .timeline__item .polaroid img.fit-full { object-fit: contain; background: #e3e1dd; }
 .timeline__item .tape { width: 42px; top: -12px; opacity: .9; }

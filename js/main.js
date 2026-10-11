@@ -345,21 +345,26 @@ function initAnimations() {
   /* ----- Series overview: identity timeline ----- */
   const items = $$(".timeline__item");
   const buildTimeline = (tl) => {
-    tl.to($$(".timeline__axis path"), { strokeDashoffset: 0, duration: 5, stagger: 4.8, ease: "none" }, 0);
+    const [axisLine, axisHead] = $$(".timeline__axis path");
+    tl.to(axisLine, { strokeDashoffset: 0, duration: 5, ease: "none" }, 0)
+      .to(axisHead, { strokeDashoffset: 0, duration: .5, ease: "power1.out" }, 4.9);
+    // each photo settles in just as the line reaches its tick (ticks sit at 10/30/50/70/90% of the axis);
+    // gentle, overlapping moves with no overshoot so scrubbing stays fluid
     items.forEach((it, i) => {
-      tl.from($(".polaroid", it), { y: -140, rotation: i % 2 ? 22 : -22, opacity: 0, duration: .9, ease: "back.out(1.7)" }, .3 + i * .95)
-        .from($(".hand", it), { opacity: 0, y: 10, duration: .5 }, .55 + i * .95);
+      const at = i * 1.0;
+      tl.from($(".polaroid", it), { y: -56, rotation: i % 2 ? 7 : -7, scale: .94, opacity: 0, duration: 1.3, ease: "power2.out" }, at)
+        .from($(".hand", it), { opacity: 0, y: 8, duration: .9, ease: "power1.out" }, at + .45);
     });
-    tl.from(".overview__question", { opacity: 0, y: 24, duration: 1 }, 4.6);
+    tl.from(".overview__question", { opacity: 0, y: 24, duration: 1, ease: "power1.out" }, 4.6);
     return tl;
   };
   mm.add("(min-width: 768px)", () => {
     buildTimeline(gsap.timeline({
-      scrollTrigger: { trigger: ".overview__pin", start: "bottom bottom", end: "+=120%", pin: true, scrub: .6 },
+      scrollTrigger: { trigger: ".overview__pin", start: "bottom bottom", end: "+=120%", pin: true, scrub: 1.2, anticipatePin: 1 },
     }));
   });
   mm.add("(max-width: 767px)", () => {
-    buildTimeline(gsap.timeline({ scrollTrigger: { trigger: ".timeline", start: "top 85%", end: "bottom 45%", scrub: .6 } }));
+    buildTimeline(gsap.timeline({ scrollTrigger: { trigger: ".timeline", start: "top 85%", end: "bottom 45%", scrub: 1.2 } }));
   });
 
   /* ----- Episodes: stills rows slide in from alternating sides ----- */
