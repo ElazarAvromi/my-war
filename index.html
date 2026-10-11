@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MY WAR — A limited autobiographical drama series</title>
+  <meta name="description" content="My War — a limited autobiographical drama series by Elazar Avramovits. He grew up hating Jews. Years later, he left everything behind to become one.">
+  <link rel="canonical" href="https://www.mywar.film/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.mywar.film/">
+  <meta property="og:title" content="MY WAR — a film by Elazar Avramovits">
+  <meta property="og:description" content="He grew up hating Jews. Years later, he left everything behind to become one.">
+  <meta property="og:image" content="https://www.mywar.film/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.mywar.film/assets/img/og-image.jpg">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/hero-poster.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Hide the hero title until the spray intro starts (never if motion is reduced);
+    // safety net: show it anyway if the scripts haven't started the intro in 4s.
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("intro-pending");
+      setTimeout(function () { document.documentElement.classList.remove("intro-pending"); }, 4000);
+    }
+  </script>
+</head>
+<body>
+
+  <!-- SVG filters shared by frames -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <!-- Fixed chrome -->
+  <a class="logo is-hidden" href="#top" aria-label="My War — back to top"><img src="assets/img/title-mywar.png" alt="MY WAR" width="1200" height="452"></a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="chapter" aria-hidden="true"><span class="chapter__num">01</span><span class="chapter__name">My War</span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <main>
+
+    <!-- 01 · HERO ─────────────────────────────────────────── -->
+    <section class="hero" id="top" data-chapter="My War">
+      <div class="hero__poster">
+        <img src="assets/img/hero-poster.jpg" alt="Split portrait: half of a snarling skinhead's face lit red, half of the same man as a bearded Orthodox Jew" width="1500" height="1800">
+      </div>
+      <div class="hero__side">
+        <img class="hero__scrap hero__scrap--a" src="assets/img/tex-pattern2.png" alt="" aria-hidden="true">
+        <img class="hero__scrap hero__scrap--b" src="assets/img/tex-glitch.png" alt="" aria-hidden="true">
+        <div class="hero__title">
+          <h1><img src="assets/img/title-mywar.png" alt="MY WAR" width="1200" height="452"></h1>
+          <p class="hero__byline">film by Elazar Avramovits</p>
+        </div>
+        <div class="hero__tag">
+          <span class="u-line u-line--wide" aria-hidden="true"></span>
+          <p class="hand hand--lg"><span class="wipe">A limited autobiographical drama series</span><br><span class="wipe">Based on a true story</span></p>
+          <div class="wave" aria-hidden="true"></div>
+        </div>
+        <a class="scroll-cue" href="#hook" data-cursor>
+          <span class="hand">scroll</span>
+          <svg viewBox="0 0 40 90" aria-hidden="true"><path pathLength="1" d="M20 4 C 14 30, 26 52, 19 84 M8 70 L19 86 L31 69"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 02 · THE HOOK ─────────────────────────────────────── -->
+    <section class="hook" id="hook" data-chapter="The Hook">
+      <div class="hook__still" data-parallax="40">
+        <img src="assets/img/hook-skin.jpg" alt="A grinning skinhead in a bomber jacket on a grey street" loading="lazy" width="2000" height="1119">
+      </div>
+      <svg class="hook__arrow draw" viewBox="0 0 220 120" aria-hidden="true">
+        <path pathLength="1" d="M214 30 C 150 -6, 60 4, 24 98"/>
+        <path pathLength="1" d="M42 86 L23 104 L14 78"/>
+      </svg>
+      <figure class="hook__id polaroid" style="--rot:-3deg">
+        <img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true">
+        <img src="assets/img/hook-id.jpg" alt="ID photo of a young Hasidic man with side curls and a beard" loading="lazy" width="583" height="700">
+      </figure>
+      <div class="hook__text">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">The Hook</span>
+          <h2 class="title">The Hook</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <p class="hand hand--lg hook__lines">
+          <span class="wipe">He grew up hating Jews.</span><br>
+          <span class="wipe">Years later, he left everything behind to become one.</span>
+        </p>
+        <span class="u-line u-line--wide" aria-hidden="true"></span>
+        <p class="body reveal">Raised in post-communist Hungary amid grief, nationalism and violent antisemitism, Gabriel descends from skinhead ideology into punk culture, drugs and self-destruction — until a near-death experience sends him searching for God and eventually toward Judaism.</p>
+      </div>
+    </section>
+
+    <!-- 03 · SERIES OVERVIEW ──────────────────────────────── -->
+    <section class="overview" id="overview" data-chapter="Series Overview">
+      <div class="overview__pin">
+        <div class="overview__portrait" data-parallax="60">
+          <img src="assets/img/overview-portrait.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <img class="overview__tex" src="assets/img/tex-pattern2.png" alt="" aria-hidden="true" loading="lazy">
+        <div class="overview__inner">
+          <header class="sec-title">
+            <span class="ghost" aria-hidden="true">Series Overview</span>
+            <h2 class="title">Series Overview</h2>
+            <span class="u-line" aria-hidden="true"></span>
+          </header>
+          <p class="hand hand--lg overview__lead reveal">My War follows Gabriel, a Hungarian boy shaped by childhood loss, inherited hatred and a collapsing post-communist world.</p>
+
+          <div class="overview__grid">
+            <div class="overview__promises reveal">
+              <p class="body">Each identity he adopts promises salvation:</p>
+              <span class="u-line" aria-hidden="true"></span>
+              <ul class="bullets">
+                <li><b>nationalism</b> gives him certainty</li>
+                <li><b>punk</b> gives him freedom</li>
+                <li><b>drugs</b> give him escape</li>
+                <li><b>religion</b> gives him meaning</li>
+              </ul>
+              <p class="body">But none of them erase the person he used to be.</p>
+            </div>
+
+            <div class="overview__asks">
+              <p class="hand hand--md reveal">The series asks:</p>
+              <span class="u-line u-line--short" aria-hidden="true"></span>
+              <p class="hand hand--lg overview__question">How much of who we are can actually change?</p>
+            </div>
+          </div>
+
+          <ol class="timeline" aria-label="Gabriel's identities over time">
+            <li class="timeline__item" style="--rot:-3deg">
+              <figure class="polaroid polaroid--sm"><img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true"><img src="assets/img/tl-child.jpg" alt="Gabriel as a small boy in star-print braces" loading="lazy"></figure>
+              <span class="hand">childhood</span>
+            </li>
+            <li class="timeline__item" style="--rot:2deg">
+              <figure class="polaroid polaroid--sm"><img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true"><img src="assets/img/tl-skin.jpg" alt="Gabriel as a teenage skinhead in a green bomber jacket" loading="lazy"></figure>
+              <span class="hand">skinhead</span>
+            </li>
+            <li class="timeline__item" style="--rot:-1deg">
+              <figure class="polaroid polaroid--sm"><img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true"><img src="assets/img/tl-punk.jpg" alt="Gabriel as a punk skater in a school corridor" loading="lazy"></figure>
+              <span class="hand">punk</span>
+            </li>
+            <li class="timeline__item" style="--rot:3deg">
+              <figure class="polaroid polaroid--sm"><img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true"><img src="assets/img/tl-drugs.jpg" alt="Gabriel with long hair during his drug years" loading="lazy" style="object-position:78% 50%"></figure>
+              <span class="hand">drugs</span>
+            </li>
+            <li class="timeline__item" style="--rot:-2deg">
+              <figure class="polaroid polaroid--sm"><img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true"><img class="fit-full" src="assets/img/tl-jew.jpg" alt="Gabriel as an Orthodox Jew in a black hat" loading="lazy"></figure>
+              <span class="hand">judaism</span>
+            </li>
+            <svg class="timeline__axis" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true">
+              <path pathLength="1" d="M4 16 C 200 12, 420 19, 640 14 S 900 15, 990 15"/>
+              <path pathLength="1" d="M972 6 L992 15 L971 25"/>
+            </svg>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · EPISODE 1 — THE HATE ─────────────────────────── -->
+    <section class="episode" id="the-hate" data-chapter="Ep. 1 — The Hate">
+      <img class="episode__tex" src="assets/img/tex-grunge-vertical.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="episode__text">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">The Hate</span>
+          <h2 class="title">The Hate</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <p class="hand hand--md reveal">Episode 1 — THE HATE</p>
+        <p class="hand hand--md reveal">Completed — approx. 9 minutes</p>
+        <!-- VIDEO: data-video="youtube:ID" · "vimeo:ID" · unlisted Vimeo "vimeo:ID/hash" -->
+        <figure class="embed reveal" data-video="youtube:K6THhGuzNbI" data-title="Episode 1 — The Hate">
+          <div class="embed__frame">
+            <img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true">
+            <img class="embed__poster" src="assets/img/ep1-04.jpg" alt="" loading="lazy">
+            <button class="embed__play" type="button" aria-label="Play Episode 1 — The Hate" data-cursor>
+              <span class="embed__icon" aria-hidden="true"></span>
+              <span class="embed__label hand">Watch episode 1</span>
+            </button>
+          </div>
+        </figure>
+        <p class="body reveal">Gabriel, now visibly Orthodox, packs his suitcase in Budapest and tells his father he is leaving for Israel to convert to Judaism.</p>
+        <p class="body reveal">His father tries to stop him, invoking Gabriel’s dead mother:</p>
+        <blockquote class="hand hand--lg quote"><span class="wipe">“I promised your mother I would look after you.”</span></blockquote>
+        <p class="body reveal">The sentence opens Gabriel’s past: his mother’s death, post-communist Hungary, inherited antisemitism, skinhead culture and the first acts of violence committed in the name of belonging.</p>
+      </div>
+      <div class="stills" aria-label="Stills from Episode 1">
+        <div class="stills__row" data-dir="1">
+          <figure class="still"><img src="assets/img/ep1-01.jpg" alt="Gabriel, Orthodox, on the phone" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep1-02.jpg" alt="Gabriel's mother smiling" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep1-03.jpg" alt="Two brothers in a 1990s living room" loading="lazy"></figure>
+        </div>
+        <div class="stills__row stills__row--shift" data-dir="-1">
+          <figure class="still"><img src="assets/img/ep1-04.jpg" alt="A skinhead holding a chain, low angle" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep1-05.jpg" alt="A skinhead throwing a punch" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep1-06.jpg" alt="Gabriel reading Mein Kampf" loading="lazy"></figure>
+        </div>
+        <div class="stills__row stills__row--end" data-dir="1">
+          <figure class="still"><img src="assets/img/ep1-07.jpg" alt="A skinhead gang marching at night" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep1-08.jpg" alt="A mohawked skinhead drinking from a bottle" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · EPISODE 2 — NO RULES ─────────────────────────── -->
+    <section class="episode episode--alt" id="no-rules" data-chapter="Ep. 2 — No Rules">
+      <img class="episode__tex" src="assets/img/tex-pattern5.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="episode__text">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">No Rules</span>
+          <h2 class="title">No Rules</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <p class="hand hand--md reveal">Episode 2 — NO RULES</p>
+        <p class="hand hand--md reveal">Completed — approx. 12 minutes</p>
+        <!-- VIDEO: data-video="youtube:ID" · "vimeo:ID" · unlisted Vimeo "vimeo:ID/hash" -->
+        <figure class="embed reveal" data-video="youtube:fnYa36hoQ64" data-title="Episode 2 — No Rules">
+          <div class="embed__frame">
+            <img class="tape" src="assets/img/tape-silver.png" alt="" aria-hidden="true">
+            <img class="embed__poster" src="assets/img/ep2-03.jpg" alt="" loading="lazy">
+            <button class="embed__play" type="button" aria-label="Play Episode 2 — No Rules" data-cursor>
+              <span class="embed__icon" aria-hidden="true"></span>
+              <span class="embed__label hand">Watch episode 2</span>
+            </button>
+          </div>
+        </figure>
+        <p class="body reveal">Gabriel leaves rigid skinhead ideology behind and enters a new world: punk music, skateboarding, parties, rebellion and drugs.</p>
+        <p class="body reveal">At first, this world feels like freedom.</p>
+        <p class="body reveal">It contains friendship, music, humor and belonging.</p>
+        <p class="hand hand--lg quote"><span class="wipe">But the same freedom slowly becomes another form of escape.</span></p>
+      </div>
+      <div class="stills" aria-label="Stills from Episode 2">
+        <div class="stills__row stills__row--shift" data-dir="-1">
+          <figure class="still"><img src="assets/img/ep2-01.jpg" alt="An older man teaching Gabriel guitar" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-02.jpg" alt="A woman confronting Gabriel" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-03.jpg" alt="Punk Gabriel with spiked hair" loading="lazy"></figure>
+        </div>
+        <div class="stills__row" data-dir="1">
+          <figure class="still"><img src="assets/img/ep2-04.jpg" alt="Gabriel embracing a girlfriend in a park" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-05.jpg" alt="Friends toasting at a house party" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-06.jpg" alt="A revolver pointed at Gabriel" loading="lazy"></figure>
+        </div>
+        <div class="stills__row stills__row--shift" data-dir="-1">
+          <figure class="still"><img src="assets/img/ep2-07.jpg" alt="A young man smoking from foil" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-08.jpg" alt="Two shirtless skaters in the sun" loading="lazy"></figure>
+          <figure class="still"><img src="assets/img/ep2-09.jpg" alt="A skater mid-kickflip" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · SEASON ARC I: DESCENT ────────────────────────── -->
+    <section class="descent" id="descent" data-chapter="Arc I — Descent">
+      <div class="descent__pin">
+        <div class="descent__eye">
+          <img src="assets/img/descent-eye.jpg" alt="Extreme close-up of a wide, staring eye" loading="lazy">
+          <svg class="crosshair" viewBox="0 0 400 400" aria-hidden="true">
+            <g class="crosshair__ring">
+              <circle cx="200" cy="200" r="150" stroke-dasharray="2 7"/>
+              <circle cx="200" cy="200" r="96" stroke-dasharray="1 5"/>
+            </g>
+            <path d="M200 60 V340 M60 200 H340"/>
+            <g class="crosshair__arrows">
+              <path d="M236 128 L270 92 M254 92 H270 V108"/>
+              <path d="M300 230 L336 196 M320 196 H336 V212"/>
+              <path d="M330 320 L356 292 M342 292 H356 V306"/>
+            </g>
+          </svg>
+        </div>
+        <div class="descent__text">
+          <header class="sec-title">
+            <span class="ghost" aria-hidden="true">Season Arc I: Descent</span>
+            <h2 class="title">Season Arc I: Descent</h2>
+            <span class="u-line" aria-hidden="true"></span>
+          </header>
+          <ol class="arc">
+            <li class="arc__ep">
+              <h3 class="hand hand--md">Episode 3 — BUDAPEST</h3>
+              <span class="u-line u-line--short" aria-hidden="true"></span>
+              <p class="body">Gabriel moves to Budapest to study. Without his father’s discipline, freedom becomes chaos: parties, festivals, daily drug use and dealing drugs at school.</p>
+            </li>
+            <li class="arc__ep">
+              <h3 class="hand hand--md">Episode 4 — OUTSIDE MYSELF</h3>
+              <span class="u-line u-line--short" aria-hidden="true"></span>
+              <p class="body">Psychedelic drugs, unstable relationships, police confrontations and an overdose push Gabriel outside his own body. His understanding of reality changes. He begins searching for God.</p>
+            </li>
+            <li class="arc__ep">
+              <h3 class="hand hand--md">Episode 5 — EVERYTHING FALLS APART</h3>
+              <span class="u-line u-line--short" aria-hidden="true"></span>
+              <p class="body">Expelled from three student residences, nearly thrown out of school, robbed, paranoid and separated from his closest friend, Gabriel finally abandons drugs.</p>
+            </li>
+          </ol>
+        </div>
+        <img class="descent__tex" src="assets/img/tex-grunge-spray.png" alt="" aria-hidden="true" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 07 · SEASON ARC II: TRANSFORMATION ────────────────── -->
+    <section class="transform" id="transformation" data-chapter="Arc II — Transformation">
+      <img class="transform__tex" src="assets/img/tex-pattern2.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="transform__portrait" data-parallax="70">
+        <img src="assets/img/transform-portrait.jpg" alt="Gabriel as a Hasidic man, seated, looking over his shoulder" loading="lazy">
+      </div>
+      <div class="transform__text">
+        <header class="sec-title sec-title--slide">
+          <span class="ghost" aria-hidden="true">Transformation</span>
+          <h2 class="title">Season Arc II: Transformation</h2>
+          <span class="u-line u-line--wide" aria-hidden="true"></span>
+        </header>
+        <ol class="arc">
+          <li class="arc__ep reveal">
+            <h3 class="hand hand--md">Episode 6 — THE SEARCH FOR TRUTH</h3>
+            <span class="u-line u-line--short" aria-hidden="true"></span>
+            <p class="body">Gabriel discovers the Jewish world around him. Communities reject him, family arguments intensify, and he takes unusual jobs in the Jewish community — including gravedigger and rabbi’s assistant.</p>
+          </li>
+          <li class="arc__ep reveal">
+            <h3 class="hand hand--md">Episode 7 — JERUSALEM</h3>
+            <span class="u-line u-line--short" aria-hidden="true"></span>
+            <p class="body">Gabriel leaves for Israel, completes conversion and arrives in Jerusalem with almost no money. He eats in charity kitchens and sleeps on a synagogue bench.</p>
+          </li>
+          <li class="arc__ep reveal">
+            <h3 class="hand hand--md">Episode 8 — YESHIVA</h3>
+            <span class="u-line u-line--short" aria-hidden="true"></span>
+            <p class="body">Gabriel finally enters yeshiva, but language, headaches, strict teachers and spiritual instability make the world he longed for almost impossible to survive.</p>
+          </li>
+          <li class="arc__ep reveal">
+            <h3 class="hand hand--md">Episode 9 — THE WEDDING</h3>
+            <span class="u-line u-line--short" aria-hidden="true"></span>
+            <p class="body">Gabriel enters a strict Hasidic community, meets his future wife, travels to America to raise money for the wedding, and marries without his parents present.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 08 · GABRIEL ──────────────────────────────────────── -->
+    <section class="gabriel" id="gabriel" data-chapter="Gabriel">
+      <img class="gabriel__tex" src="assets/img/tex-pattern6.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="gabriel__text">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">Gabriel</span>
+          <h2 class="title">Gabriel</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <p class="hand hand--md gabriel__lead"><span class="wipe">Gabriel is not one person</span><br><span class="wipe">He is every person he tried to become</span></p>
+        <ul class="identities">
+          <li>A grieving child</li>
+          <li>A teenage antisemite</li>
+          <li data-show="skinhead" tabindex="0">A skinhead</li>
+          <li data-show="punk" tabindex="0">A punk</li>
+          <li data-show="skater" tabindex="0">A skater</li>
+          <li>A drug dealer</li>
+          <li>A spiritual seeker</li>
+          <li>A convert</li>
+          <li>An immigrant</li>
+          <li data-show="jewish" tabindex="0">A yeshiva student</li>
+          <li>A husband</li>
+        </ul>
+        <span class="u-line u-line--wide" aria-hidden="true"></span>
+        <p class="body identities__end">They are all the same person.</p>
+      </div>
+
+      <div class="collage">
+        <figure class="collage__item collage__skaters polaroid" data-group="skater" data-depth="18" style="--rot:-4deg">
+          <img src="assets/img/gab-skaters.jpg" alt="Two shirtless teenage skaters on a ledge" loading="lazy">
+        </figure>
+        <span class="collage__label collage__label--skater hand hand--md" data-group="skater" data-depth="10">Skater</span>
+        <svg class="collage__arrow collage__arrow--skater draw" viewBox="0 0 100 120" aria-hidden="true">
+          <path pathLength="1" d="M20 4 C 0 50, 20 92, 86 108"/><path pathLength="1" d="M70 96 L88 109 L70 118"/>
+        </svg>
+        <img class="collage__item collage__board" data-group="skater" data-depth="34" src="assets/img/gab-skateboard.png" alt="A battered skateboard shown front, back and side" loading="lazy">
+        <span class="collage__label collage__label--jewish hand hand--md" data-group="jewish" data-depth="10">Jewish</span>
+        <figure class="collage__item collage__jewish polaroid" data-group="jewish" data-depth="12" style="--rot:2deg">
+          <img src="assets/img/gab-jewish.jpg" alt="Costume tests of Gabriel as a Hasidic man: standing, sitting and leaning" loading="lazy">
+        </figure>
+        <span class="collage__label collage__label--punk hand hand--md" data-group="punk" data-depth="22">Punk</span>
+        <span class="collage__x hand" data-depth="26" aria-hidden="true">X</span>
+        <figure class="collage__item collage__punk1 polaroid polaroid--sm" data-group="punk" data-depth="26" style="--rot:-2deg">
+          <img src="assets/img/gab-punk1.jpg" alt="Punk Gabriel with spiked hair, front" loading="lazy">
+        </figure>
+        <figure class="collage__item collage__punk2 polaroid polaroid--sm" data-group="punk" data-depth="30" style="--rot:3deg">
+          <img src="assets/img/gab-punk2.jpg" alt="Punk Gabriel with spiked hair, profile" loading="lazy">
+        </figure>
+      </div>
+
+      <figure class="wardrobe" data-group="skinhead">
+        <img src="assets/img/gab-wardrobe.jpg" alt="Wardrobe study of skinhead Gabriel: bomber jacket, rolled jeans, Doc Martens" loading="lazy">
+        <svg class="wardrobe__circle" viewBox="0 0 200 160" aria-hidden="true">
+          <path pathLength="1" d="M120 20 C 60 6, 10 40, 14 88 C 18 140, 120 156, 170 120 C 206 92, 190 30, 110 24"/>
+          <path pathLength="1" d="M-60 60 C -30 72, -12 76, 6 80 M-8 70 L8 80 L-6 90"/>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- 09 · CHARACTERS ───────────────────────────────────── -->
+    <section class="characters" id="characters" data-chapter="Characters">
+      <img class="characters__tex" src="assets/img/tex-grunge-spray.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="characters__drip" src="assets/img/tex-drip.png" alt="" aria-hidden="true" loading="lazy">
+      <header class="sec-title">
+        <span class="ghost" aria-hidden="true">Characters</span>
+        <h2 class="title">Family and Key Characters</h2>
+        <span class="u-line u-line--wide" aria-hidden="true"></span>
+      </header>
+      <div class="cast">
+        <article class="card" style="--rot:-1.5deg">
+          <div class="card__photo">
+            <img class="tape tape--black" src="assets/img/tape-black.png" alt="" aria-hidden="true">
+            <img src="assets/img/char-father.jpg" alt="Gabriel's father, grey-bearded" loading="lazy">
+          </div>
+          <h3 class="hand hand--md">Father</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">A widower, teacher and contradictory force in Gabriel’s life. He passes antisemitic beliefs to his son, but later fears losing that same son to Judaism and Israel.</p>
+        </article>
+        <article class="card" style="--rot:1deg">
+          <div class="card__photo">
+            <img class="tape tape--black" src="assets/img/tape-black.png" alt="" aria-hidden="true">
+            <img src="assets/img/char-mother.jpg" alt="Gabriel's mother, 1980s blonde hair" loading="lazy">
+          </div>
+          <h3 class="hand hand--md">Mother</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">She dies when Gabriel is five, but her absence shapes the entire story. Her memory binds father and son together even when religion divides them.</p>
+        </article>
+        <article class="card" style="--rot:-0.5deg">
+          <div class="card__photo">
+            <img class="tape tape--black" src="assets/img/tape-black.png" alt="" aria-hidden="true">
+            <img src="assets/img/char-brother.jpg" alt="Gabriel's brother, buzz-cut" loading="lazy">
+          </div>
+          <h3 class="hand hand--md">Brother</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">Gabriel’s closest witness to childhood loss and the person who remembers him before ideology, drugs and faith transformed him.</p>
+        </article>
+        <article class="card" style="--rot:2deg">
+          <div class="card__photo">
+            <img class="tape tape--black" src="assets/img/tape-black.png" alt="" aria-hidden="true">
+            <img src="assets/img/char-kriszta.jpg" alt="Kriszta, with spiky red hair, smiling" loading="lazy">
+          </div>
+          <h3 class="hand hand--md">Kriszta</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">Gabriel’s girlfriend during his chaotic Budapest years. Their relationship reflects the emotional instability and dependency of that period.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10 · VISUAL LANGUAGE ──────────────────────────────── -->
+    <section class="visual" id="visual-language" data-chapter="Visual Language">
+      <img class="visual__tex" src="assets/img/tex-typo.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="visual__top">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">Visual Language</span>
+          <h2 class="title">Visual Language</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <div class="visual__copy reveal">
+          <p class="body">My War combines the gritty, high-contrast underworld aesthetic of <em>Snatch</em> with the warmer, more expressive colour and light of <em>Trainspotting</em>.</p>
+          <p class="body">Desaturated slate grey, metallic blue and pale green tones, harsh shadows, subtle wide-angle distortion and tactile 35mm grain create a raw, cinematic world.</p>
+          <p class="body">As Gabriel changes, the visual language changes with him — from rigid and confrontational to chaotic, psychedelic and eventually more restrained and spiritual.</p>
+        </div>
+        <div class="visual__pins">
+          <figure class="polaroid visual__pin1" style="--rot:-5deg" data-parallax="30"><img src="assets/img/vl-snatch2.jpg" alt="Snatch (2000): men huddled on a sofa" loading="lazy"></figure>
+          <figure class="polaroid visual__pin2" style="--rot:3deg" data-parallax="-20"><img src="assets/img/vl-snatch3.jpg" alt="Snatch (2000): a boxer sitting in the ring" loading="lazy"></figure>
+        </div>
+      </div>
+
+      <p class="hand hand--md visual__label">Tone references <span class="u-line u-line--short" aria-hidden="true"></span></p>
+
+      <div class="refs">
+        <figure class="ref">
+          <div class="ref__frame frame"><img src="assets/img/vl-trainspotting.jpg" alt="Trainspotting (1996): a young man smoking in a warm-lit room" loading="lazy"></div>
+          <figcaption>
+            <span class="hand hand--md">Trainspotting (1996)</span>
+            <span class="swatches" aria-label="Warm colour palette">
+              <i style="--c:#3e231c"></i><i style="--c:#5a2e24"></i><i style="--c:#6a5640"></i><i style="--c:#7b6a4e"></i><i style="--c:#8e7258"></i><i style="--c:#a68572"></i>
+            </span>
+            <span class="hand hand--sm swatches__note">Warm colour palette</span>
+          </figcaption>
+        </figure>
+
+        <svg class="refs__arrows draw" viewBox="0 0 90 70" aria-hidden="true">
+          <path pathLength="1" d="M86 12 C 60 14, 30 10, 6 12 M16 4 L5 12 L16 20"/>
+          <path pathLength="1" d="M86 34 C 60 36, 30 32, 6 34 M16 26 L5 34 L16 42"/>
+          <path pathLength="1" d="M86 56 C 60 58, 30 54, 6 56 M16 48 L5 56 L16 64"/>
+        </svg>
+
+        <figure class="ref ref--snatch">
+          <div class="ref__frame frame" data-magnify>
+            <img src="assets/img/vl-snatch.jpg" alt="Snatch (2000): three men in a dim, green-grey bar" loading="lazy">
+            <div class="lens" aria-hidden="true"><span class="lens__img"></span></div>
+            <span class="lens__label hand hand--sm" aria-hidden="true">35mm film grain</span>
+          </div>
+          <figcaption>
+            <span class="hand hand--md">Snatch (2000)</span>
+            <span class="swatches" aria-label="Desaturated slate grey palette">
+              <i style="--c:#1d2324"></i><i style="--c:#2a3334"></i><i style="--c:#3a4745"></i><i style="--c:#4d5856"></i><i style="--c:#5a6f7c"></i><i style="--c:#6e7e7b"></i>
+            </span>
+            <span class="hand hand--sm swatches__note">gritty and raw, desaturated colour palette of slate grey</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 11 · CREATIVE APPROACH ────────────────────────────── -->
+    <section class="creative" id="creative-approach" data-chapter="Creative Approach">
+      <img class="creative__tex" src="assets/img/tex-grunge-vertical.png" alt="" aria-hidden="true" loading="lazy">
+      <div class="creative__head">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">Creative Approach</span>
+          <h2 class="title">Creative Approach</h2>
+          <span class="u-line" aria-hidden="true"></span>
+        </header>
+        <p class="hand hand--lg"><span class="wipe">Generative filmmaking as reconstructed memory.</span></p>
+      </div>
+
+      <div class="creative__body">
+        <div class="creative__copy reveal">
+          <p class="body">My War combines generative AI, editing, archival material, authentic cultural references, music and traditional post-production.</p>
+          <span class="u-line u-line--wide" aria-hidden="true"></span>
+          <p class="body">AI is not the subject of the story.</p>
+          <p class="body">It is the method that allows Gabriel to reconstruct a past that can no longer be filmed:</p>
+          <ul class="bullets">
+            <li>his childhood</li>
+            <li>his mother</li>
+            <li>vanished places</li>
+            <li>younger versions of real people</li>
+            <li>memories shaped by grief, drugs and time</li>
+          </ul>
+          <p class="body">The artificial image becomes part of the language of memory.</p>
+        </div>
+
+        <div class="memories">
+          <div class="memory memory--mother">
+            <span class="memory__tag hand hand--md">Mother</span>
+            <div class="memory__from">
+              <figure class="polaroid" style="--rot:-3deg"><img src="assets/img/ca-mother-archive.jpg" alt="Archival family photo: Gabriel's mother in a red dress beside a car" loading="lazy"></figure>
+              <figure class="polaroid polaroid--sm memory__second" style="--rot:4deg"><img src="assets/img/ca-mother-portrait.jpg" alt="Archival portrait of a young woman" loading="lazy"></figure>
+            </div>
+            <svg class="memory__arrow" viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+            <figure class="memory__to frame frame--tall"><img src="assets/img/ca-mother-ai.jpg" alt="AI reconstruction of the mother in her red dress" loading="lazy"><span class="memory__badge">reconstructed</span></figure>
+          </div>
+
+          <div class="memory memory--child">
+            <span class="memory__tag hand hand--md">Childhood</span>
+            <div class="memory__from">
+              <figure class="polaroid" style="--rot:-4deg"><img src="assets/img/ca-child-archive.jpg" alt="Archival photo: two boys at a table" loading="lazy"></figure>
+              <figure class="polaroid polaroid--sm memory__second" style="--rot:3deg"><img src="assets/img/ca-child-archive2.jpg" alt="Archival photo: Gabriel as a small boy" loading="lazy"></figure>
+            </div>
+            <svg class="memory__arrow" viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+            <figure class="memory__to frame"><img src="assets/img/ca-child-ai.jpg" alt="AI reconstruction: the two brothers in their living room" loading="lazy"><span class="memory__badge">reconstructed</span></figure>
+          </div>
+
+          <div class="memory memory--location">
+            <span class="memory__tag hand hand--md">Location</span>
+            <div class="memory__from">
+              <figure class="polaroid" style="--rot:3deg"><img src="assets/img/ca-location-archive.jpg" alt="Photo of a yellow Hungarian building and square" loading="lazy"></figure>
+            </div>
+            <svg class="memory__arrow" viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+            <figure class="memory__to frame"><img src="assets/img/ca-location-ai.jpg" alt="AI reconstruction: a skater grinding a ledge in the same square" loading="lazy"><span class="memory__badge">reconstructed</span></figure>
+          </div>
+
+          <div class="memory memory--events">
+            <span class="memory__tag hand hand--md">Events</span>
+            <div class="memory__from">
+              <figure class="polaroid" style="--rot:-2deg"><img src="assets/img/ca-events-archive.jpg" alt="Archival Fortepan photo: May Day parade of pioneers with flags" loading="lazy"></figure>
+            </div>
+            <svg class="memory__arrow" viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+            <figure class="memory__to frame"><img src="assets/img/ca-events-ai.jpg" alt="AI reconstruction of a communist-era May Day parade" loading="lazy"><span class="memory__badge">reconstructed</span></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · WHY THIS / WHY ME / WHY NOW ──────────────────── -->
+    <section class="why" id="why" data-chapter="Why Now">
+      <svg class="why__scribble" viewBox="0 0 400 420" aria-hidden="true"></svg>
+      <div class="why__still">
+        <img src="assets/img/ep1-04.jpg" alt="Skinhead Gabriel holding a heavy chain, shot from below" loading="lazy">
+      </div>
+      <div class="why__text">
+        <header class="sec-title">
+          <span class="ghost" aria-hidden="true">Why Now</span>
+          <h2 class="title">Why this / Why me / Why now</h2>
+          <span class="u-line u-line--wide" aria-hidden="true"></span>
+        </header>
+        <div class="qa reveal">
+          <h3 class="hand hand--md">Why this idea?</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">Because it happened. The different people Gabriel has been feel almost impossible to reconcile — yet they all belong to the same life.</p>
+        </div>
+        <div class="qa reveal">
+          <h3 class="hand hand--md">Why me?</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">Because I lived it. The antisemite, the punk, the addict, the convert, the immigrant and the husband are not fictional characters. They are all me.</p>
+        </div>
+        <div class="qa reveal">
+          <h3 class="hand hand--md">Why now?</h3>
+          <span class="u-line u-line--short" aria-hidden="true"></span>
+          <p class="body">We live in a time of identity crisis, radicalisation, antisemitism, nationalism, addiction, migration and spiritual searching.</p>
+          <p class="body">My War asks whether a person can truly change — and what remains after every identity collapses.</p>
+        </div>
+        <p class="status reveal"><span class="status__dot" aria-hidden="true"></span><span><b>Current status:</b> Episodes 1 and 2 completed. Episodes 3–9 in development / production.</span></p>
+      </div>
+    </section>
+
+    <!-- 13 · CONTACT ──────────────────────────────────────── -->
+    <section class="contact" id="contact" data-chapter="Contact">
+      <img class="contact__tex" src="assets/img/tex-pattern4.png" alt="" aria-hidden="true" loading="lazy">
+      <header class="sec-title">
+        <span class="ghost" aria-hidden="true">Contact</span>
+        <h2 class="title">Get in touch</h2>
+        <span class="u-line" aria-hidden="true"></span>
+      </header>
+      <p class="hand hand--lg contact__lead reveal">For broadcasters, producers, festivals and press — screeners on request.</p>
+
+      <form class="form" id="contact-form" novalidate>
+        <div class="field reveal">
+          <label for="f-name" class="hand hand--md">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+          <span class="field__line" aria-hidden="true"></span>
+        </div>
+        <div class="field reveal">
+          <label for="f-email" class="hand hand--md">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+          <span class="field__line" aria-hidden="true"></span>
+        </div>
+        <div class="field field--full reveal">
+          <label for="f-org" class="hand hand--md">Company / organisation <small>(optional)</small></label>
+          <input id="f-org" name="organisation" type="text" autocomplete="organization">
+          <span class="field__line" aria-hidden="true"></span>
+        </div>
+        <div class="field field--full reveal">
+          <label for="f-msg" class="hand hand--md">Message</label>
+          <textarea id="f-msg" name="message" rows="4" required></textarea>
+          <span class="field__line" aria-hidden="true"></span>
+        </div>
+        <!-- honeypot: humans never see or fill this -->
+        <div class="hp" aria-hidden="true">
+          <label for="f-gotcha">Leave this empty</label>
+          <input id="f-gotcha" name="_honey" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <!-- FormSubmit options -->
+        <input type="hidden" name="_subject" value="MY WAR website — new message">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="form__actions reveal">
+          <button class="send" type="submit" data-cursor>
+            <span class="hand">Send</span>
+            <svg viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+          </button>
+          <p class="form__status hand hand--md" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <img src="assets/img/title-mywar.png" alt="MY WAR" width="1200" height="452" loading="lazy">
+    <p class="hand hand--md">a film by Elazar Avramovits</p>
+    <p class="footer__small">© 2026 Elazar Avramovits. All rights reserved. Tone-reference stills belong to their respective owners.</p>
+  </footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
