@@ -8,6 +8,7 @@ The links never appear in the page in readable form.
 
 Usage (from the website folder):
     python3 tools/lock-episodes.py
+    python3 tools/lock-episodes.py --ep1 <link> --ep2 <link>   # only asks for the password
 Then publish:
     git add index.html && git commit -m "Update locked episodes" && git push
 
@@ -83,7 +84,10 @@ def decrypt(payload: str, password: str):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--file", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "index.html"))
+    ap.add_argument("--ep1", help="Episode 1 YouTube/Vimeo link (skips the prompt)")
+    ap.add_argument("--ep2", help="Episode 2 YouTube/Vimeo link (skips the prompt)")
     args = ap.parse_args()
+    given = {"1": args.ep1, "2": args.ep2}
 
     path = os.path.abspath(args.file)
     html = open(path, encoding="utf-8").read()
@@ -102,10 +106,12 @@ def main():
     for ep, title in EPISODES.items():
         while True:
             try:
-                spec = to_spec(input(f"\n{title} — paste the YouTube/Vimeo link: "))
+                link = given[ep] or input(f"\n{title} — paste the YouTube/Vimeo link: ")
+                spec = to_spec(link)
                 break
             except ValueError as err:
                 print(f"  {err}")
+                given[ep] = None
         payload = encrypt(spec, pw)
         assert decrypt(payload, pw) == spec  # self-check
         pattern = re.compile(r'(data-episode="%s"\s+data-locked=)\'[^\']*\'' % ep)
