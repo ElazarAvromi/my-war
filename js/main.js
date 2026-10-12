@@ -595,46 +595,149 @@ function videoURL(spec) {
   return null;
 }
 
+/* Password-protected episodes: data-locked holds the video spec encrypted with
+   PBKDF2-SHA256 → HMAC-SHA256 counter-mode keystream + HMAC tag (written by
+   tools/lock-episodes.py). Wrong passwords fail the tag check; the link is never
+   in the page source. One shared password unlocks every locked episode. */
+const b64bytes = (str) => Uint8Array.from(atob(str), (ch) => ch.charCodeAt(0));
+const joinBytes = (...parts) => {
+  const out = new Uint8Array(parts.reduce((n, x) => n + x.length, 0));
+  let o = 0;
+  parts.forEach((x) => { out.set(x, o); o += x.length; });
+  return out;
+};
+
+async function decryptSpec(payload, password) {
+  const { s, n, c, t, i } = JSON.parse(payload);
+  const salt = b64bytes(s), nonce = b64bytes(n), ct = b64bytes(c), tag = b64bytes(t);
+  const subtle = window.crypto.subtle;
+  const base = await subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
+  const bits = new Uint8Array(await subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations: i }, base, 512));
+  const hmacKey = (raw) => subtle.importKey("raw", raw, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const encKey = await hmacKey(bits.slice(0, 32));
+  const macKey = await hmacKey(bits.slice(32));
+
+  const mac = new Uint8Array(await subtle.sign("HMAC", macKey, joinBytes(salt, nonce, ct)));
+  if (mac.length !== tag.length || mac.some((x, k) => x !== tag[k])) return null;   // wrong password
+
+  const out = new Uint8Array(ct.length);
+  for (let blk = 0; blk * 32 < ct.length; blk++) {
+    const ctr = new Uint8Array(4);
+    new DataView(ctr.buffer).setUint32(0, blk);
+    const ks = new Uint8Array(await subtle.sign("HMAC", encKey, joinBytes(nonce, ctr)));
+    for (let j = 0; j < 32 && blk * 32 + j < ct.length; j++) out[blk * 32 + j] = ct[blk * 32 + j] ^ ks[j];
+  }
+  return new TextDecoder().decode(out);
+}
+
 function initEmbeds() {
-  const embeds = $$(".embed[data-video]");
-  const resets = [];
+  const players = [];
+  const LOCK_SVG = '<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M11 21 V14 C11 6.5 15.5 3 20 3 S29 6.5 29 14 V21"/><path d="M6 21.5 C14 20.5 27 20.8 34.5 21.5 L34 44 C25 45 14 44.6 6.4 44 Z"/><path d="M20 30 V36"/></svg>';
 
-  embeds.forEach((embed) => {
-    const url = videoURL(embed.dataset.video);
+  const makePlayer = (embed) => {
     const frame = $(".embed__frame", embed);
-    const btn = $(".embed__play", embed);
-    const original = frame.innerHTML;
+    const p = { embed, url: null, original: frame.innerHTML };
 
-    if (!url) {
-      embed.classList.add("is-pending");
-      btn.setAttribute("aria-disabled", "true");
-      btn.removeAttribute("data-cursor");
-      $(".embed__label", btn).textContent = "Screening link coming soon";
-      return;
-    }
-
-    const reset = () => {
+    p.reset = () => {
       if (!embed.classList.contains("is-playing")) return;
       embed.classList.remove("is-playing");
-      frame.innerHTML = original;
+      frame.innerHTML = p.original;
       bind();
     };
-    const play = () => {
-      resets.forEach((r) => r !== reset && r());   // only one episode plays at a time
+    p.play = () => {
+      if (!p.url) return;
+      players.forEach((o) => o !== p && o.reset());   // only one video plays at a time
       embed.classList.add("is-playing");
       const tape = $(".tape", frame);
       frame.innerHTML = "";
       if (tape) frame.appendChild(tape);
       const iframe = document.createElement("iframe");
-      iframe.src = url;
+      iframe.src = p.url;
       iframe.title = embed.dataset.title || "Episode";
       iframe.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
       frame.appendChild(iframe);
       iframe.focus();
     };
-    const bind = () => $(".embed__play", embed).addEventListener("click", play);
-    resets.push(reset);
-    bind();
+    const bind = () => { const b = $(".embed__play", embed); if (b) b.addEventListener("click", p.play); };
+    p.ready = (url) => {
+      p.url = url;
+      embed.classList.remove("is-locked", "is-wrong");
+      $(".embed__lock", frame)?.remove();
+      p.original = frame.innerHTML;
+      bind();
+    };
+    p.pending = () => {
+      const btn = $(".embed__play", embed);
+      embed.classList.add("is-pending");
+      btn.setAttribute("aria-disabled", "true");
+      btn.removeAttribute("data-cursor");
+      $(".embed__label", btn).textContent = "Screening link coming soon";
+    };
+    players.push(p);
+    return p;
+  };
+
+  // public videos (trailer)
+  $$(".embed[data-video]").forEach((embed) => {
+    const p = makePlayer(embed);
+    const url = videoURL(embed.dataset.video);
+    if (url) p.ready(url); else p.pending();
+  });
+
+  // password-protected episodes
+  const locked = $$(".embed[data-locked]").map((embed) => {
+    const p = makePlayer(embed);
+    if (!embed.dataset.locked) { p.pending(); return null; }
+    if (!window.crypto?.subtle) { p.pending(); return null; }   // needs https (or localhost)
+
+    embed.classList.add("is-locked");
+    const n = embed.dataset.episode || "";
+    const form = document.createElement("form");
+    form.className = "embed__lock";
+    form.noValidate = true;
+    form.innerHTML =
+      `<span class="embed__padlock">${LOCK_SVG}</span>` +
+      `<span class="embed__label hand">Private screening</span>` +
+      `<span class="embed__pw">` +
+        `<input type="password" name="pw" autocomplete="current-password" placeholder="password" aria-label="Password for episode ${n}" required>` +
+        `<button type="submit" aria-label="Unlock episode ${n}" data-cursor><svg viewBox="0 0 80 30" aria-hidden="true"><path d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg></button>` +
+      `</span>` +
+      `<span class="embed__msg hand" role="status" aria-live="polite"></span>`;
+    $(".embed__frame", embed).appendChild(form);
+    p.form = form;
+    return p;
+  }).filter(Boolean);
+
+  locked.forEach((p) => {
+    const form = p.form;
+    const input = $("input", form);
+    const msg = $(".embed__msg", form);
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pw = input.value;
+      if (!pw) { input.focus(); return; }
+      form.classList.add("is-busy");
+      msg.textContent = "unlocking…";
+      let spec = null;
+      try { spec = await decryptSpec(p.embed.dataset.locked, pw); } catch (err) { console.error("[My War] unlock", err); }
+      form.classList.remove("is-busy");
+      if (!spec || !videoURL(spec)) {
+        msg.textContent = "Wrong password";
+        p.embed.classList.remove("is-wrong");
+        void p.embed.offsetWidth;   // restart the shake
+        p.embed.classList.add("is-wrong");
+        input.select();
+        return;
+      }
+      // same password opens the other locked episodes too
+      await Promise.all(locked.map(async (o) => {
+        if (o === p || o.url) return;
+        const other = await decryptSpec(o.embed.dataset.locked, pw).catch(() => null);
+        if (other && videoURL(other)) o.ready(videoURL(other));
+      }));
+      p.ready(videoURL(spec));
+      p.play();
+    });
   });
 }
 
