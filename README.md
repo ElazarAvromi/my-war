@@ -20,7 +20,7 @@ Each player shows a poster still and only loads the video when someone presses p
 - YouTube: `data-video="youtube:VIDEO_ID"`
 - Vimeo: `data-video="vimeo:123456789"` (unlisted Vimeo with a private hash: `vimeo:123456789/abcdef1234`)
 
-**Trailer (The Hook):** public YouTube video.
+**Trailer (The Hook):** public Vimeo video.
 
 **Episodes 1–3:** password-protected Vimeo videos. The Vimeo player shows its own password screen inside the frame, so the password is managed in Vimeo (video → Privacy → Password), not on this site. The play buttons are labelled "Private screening · password required". To add Episode 4 later, copy an episode section and set its `vimeo:` ID.
 
