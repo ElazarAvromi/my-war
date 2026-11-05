@@ -323,6 +323,13 @@ function initAnimations() {
       scrollTrigger: { trigger: group, start: "top 85%" } });
   });
 
+  /* ----- Social icons: hand-drawn strokes draw in ----- */
+  $$(".social__icon").forEach((svg, i) => {
+    gsap.fromTo($$("path", svg), { strokeDasharray: "1 1", strokeDashoffset: 1 },
+      { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: .2, delay: .25 + i * .2,
+        scrollTrigger: { trigger: svg, start: "top 90%" } });
+  });
+
   /* ----- Generic fade-up ----- */
   gsap.set(".reveal", { opacity: 0, y: 34 });
   ScrollTrigger.batch(".reveal", {
@@ -715,6 +722,69 @@ function initForm() {
 }
 
 /* --------------------------------------------------------------------------
+   Subscribe (series updates) — FormSubmit, same inbox as the contact form
+   -------------------------------------------------------------------------- */
+function initSubscribe() {
+  const form = $("#subscribe-form");
+  if (!form) return;
+  const status = $(".form__status", form);
+  const btn = $(".send", form);
+  const field = $(".field", form);
+  const email = form.elements.email;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const say = (msg, ok, link) => {
+    status.textContent = msg;
+    if (link) {
+      const a = document.createElement("a");
+      a.href = link.href;
+      a.textContent = link.text;
+      status.append(" ", a);
+    }
+    status.classList.toggle("is-ok", !!ok);
+    status.classList.toggle("is-err", !ok);
+    if (hasGSAP && !reduceMotion) gsap.fromTo(status, wipeFrom, { ...wipeTo, duration: .9, ease: "power2.inOut" });
+  };
+
+  email.addEventListener("input", () => field.classList.remove("is-invalid"));
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Honeypot: bots fill hidden fields — pretend success, send nothing
+    if (form.elements._honey.value) { say("You’re on the list — thank you!", true); form.reset(); return; }
+
+    const value = email.value.trim();
+    if (!emailRe.test(value)) {
+      field.classList.add("is-invalid");
+      say("Please enter a valid email address.", false);
+      email.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    say("Signing you up…", true);
+    try {
+      const res = await fetch(CONFIG.FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error(data.message || `HTTP ${res.status}`);
+      form.reset();
+      say("You’re on the list — thank you!", true);
+    } catch (err) {
+      console.error("[My War] subscribe error", err);
+      const href = `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent("Subscribe — MY WAR updates")}` +
+        `&body=${encodeURIComponent(`Please add me to the MY WAR updates list: ${value}`)}`;
+      say("Couldn’t sign you up just now —", false, { href, text: "subscribe by email instead" });
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
    Custom cursor
    -------------------------------------------------------------------------- */
 function initCursor() {
@@ -748,6 +818,7 @@ buildScribble();
 initChrome();
 initEmbeds();
 initForm();
+initSubscribe();
 initMagnifier();
 initIdentityLinks();
 

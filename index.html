@@ -665,6 +665,70 @@
     </section>
 
     <!-- 14 · CONTACT ──────────────────────────────────────── -->
+    <section class="follow" id="follow" data-chapter="Follow">
+      <img class="follow__tex" src="assets/img/tex-pattern4.png" alt="" aria-hidden="true" loading="lazy">
+      <header class="sec-title">
+        <span class="ghost" aria-hidden="true">Follow</span>
+        <h2 class="title">Follow the series</h2>
+        <span class="u-line" aria-hidden="true"></span>
+      </header>
+
+      <div class="follow__grid">
+        <div class="follow__sub">
+          <p class="hand hand--lg follow__lead reveal">New episodes, behind the scenes and screenings — straight to your inbox.</p>
+          <form class="subscribe reveal" id="subscribe-form" novalidate>
+            <div class="field subscribe__field">
+              <label for="s-email" class="hand hand--md">Your email</label>
+              <input id="s-email" name="email" type="email" autocomplete="email" required>
+              <span class="field__line" aria-hidden="true"></span>
+            </div>
+            <!-- honeypot: humans never see or fill this -->
+            <div class="hp" aria-hidden="true">
+              <label for="s-gotcha">Leave this empty</label>
+              <input id="s-gotcha" name="_honey" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <!-- FormSubmit options -->
+            <input type="hidden" name="_subject" value="MY WAR website — new subscriber">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="type" value="Subscribe to series updates">
+            <button class="send" type="submit" data-cursor>
+              <span class="hand">Subscribe</span>
+              <svg viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
+            </button>
+            <p class="form__status subscribe__status hand hand--md" role="status" aria-live="polite"></p>
+          </form>
+          <p class="subscribe__fine reveal">No spam. Only news about MY WAR — unsubscribe any time.</p>
+        </div>
+
+        <div class="follow__social">
+          <p class="hand hand--md follow__label reveal">…or follow along</p>
+          <ul class="social social--big">
+            <li class="reveal">
+              <a href="https://www.instagram.com/mywar.film/" target="_blank" rel="noopener" data-cursor>
+                <svg class="social__icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path pathLength="1" d="M15 5.5 C 9 5.8, 5.6 9.2, 5.4 15.4 L 5.6 33 C 5.9 39, 9.4 42.4, 15.6 42.6 L 33 42.4 C 39.2 42.1, 42.5 38.6, 42.6 32.6 L 42.4 15 C 42.1 9, 38.6 5.6, 32.6 5.4 Z"/>
+                  <path pathLength="1" d="M24 15.2 C 18.8 15.1, 15.2 18.9, 15.3 24.1 C 15.4 29.2, 19.1 32.8, 24.2 32.7 C 29.3 32.6, 32.8 28.9, 32.7 23.8 C 32.6 18.8, 29 15.3, 24 15.2 Z"/>
+                  <path pathLength="1" d="M34.6 12.2 C 35.6 12.1, 36.1 12.9, 35.7 13.7 C 35.2 14.4, 34.1 14.2, 34 13.3 C 33.9 12.7, 34.2 12.3, 34.6 12.2 Z"/>
+                </svg>
+                <span class="social__text"><span class="hand">Instagram</span><small>@mywar.film</small></span>
+              </a>
+            </li>
+            <li class="reveal">
+              <a href="https://www.facebook.com/mywarfilm" target="_blank" rel="noopener" data-cursor>
+                <svg class="social__icon" viewBox="0 0 48 48" aria-hidden="true">
+                  <path pathLength="1" d="M24 5.4 C 13.6 5.6, 5.5 13.7, 5.5 24 C 5.6 33.2, 12.1 40.8, 20.6 42.4 M27.6 42.5 C 36 41, 42.5 33.3, 42.5 24.1 C 42.4 13.8, 34.3 5.4, 24 5.4"/>
+                  <path pathLength="1" d="M31 13.6 C 28.6 13.3, 25.6 13.4, 24.4 15.2 C 23.3 16.8, 23.6 19.6, 23.5 22 L 23.8 42.8"/>
+                  <path pathLength="1" d="M17.8 24.4 C 21.6 24.1, 26.4 24.3, 30.2 24.2"/>
+                </svg>
+                <span class="social__text"><span class="hand">Facebook</span><small>/mywarfilm</small></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact" data-chapter="Contact">
       <img class="contact__tex" src="assets/img/tex-pattern4.png" alt="" aria-hidden="true" loading="lazy">
       <header class="sec-title">
@@ -719,6 +783,11 @@
   <footer class="footer">
     <img src="assets/img/title-mywar.png" alt="MY WAR" width="1200" height="452" loading="lazy">
     <p class="hand hand--md">a film by Elazar Avramovits</p>
+    <ul class="social social--small" aria-label="MY WAR on social media">
+      <li><a href="https://www.instagram.com/mywar.film/" target="_blank" rel="noopener" data-cursor>Instagram</a></li>
+      <li><a href="https://www.facebook.com/mywarfilm" target="_blank" rel="noopener" data-cursor>Facebook</a></li>
+      <li><a href="#follow" data-cursor>Subscribe</a></li>
+    </ul>
     <p class="footer__small">© 2026 Elazar Avramovits. All rights reserved. Tone-reference stills belong to their respective owners.</p>
   </footer>
 

@@ -1212,6 +1212,77 @@ html.intro-pending .hero__title img { --sweep: -8%; }
 .form__status a { color: var(--orange); text-underline-offset: 4px; }
 
 /* ==========================================================================
+   Follow — subscribe + social
+   ========================================================================== */
+.follow {
+  position: relative;
+  padding: var(--section-pad) var(--gutter) clamp(40px, 8vh, 90px);
+  overflow: hidden;
+}
+.follow__tex { position: absolute; left: -4%; bottom: 0; width: clamp(180px, 22vw, 340px); opacity: .08; transform: scaleX(-1); pointer-events: none; }
+.follow__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 120px);
+  align-items: start;
+  max-width: 1200px;
+}
+.follow__lead { max-width: 20em; margin-bottom: clamp(26px, 5vh, 48px); line-height: 1.4; }
+.subscribe {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 22px 30px;
+  max-width: 640px;
+}
+.subscribe__field { flex: 1 1 260px; }
+.subscribe .send { flex: none; }
+.subscribe__status { flex: 1 1 100%; margin: 0; }
+.subscribe__fine { margin: 14px 0 0; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.follow__label { color: var(--ink-dim); margin-bottom: 18px; }
+.social { list-style: none; margin: 0; padding: 0; }
+.social--big { display: flex; flex-direction: column; gap: 18px; }
+.social--big a {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color .3s;
+}
+.social__icon {
+  width: 54px; height: 54px; flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#rough);
+  transition: transform .5s var(--ease);
+}
+.social__text { display: flex; flex-direction: column; line-height: 1; }
+.social__text .hand { font-size: clamp(2rem, 3vw, 2.8rem); color: inherit; }
+.social__text small { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 4px; transition: color .3s; }
+.social--big a:hover, .social--big a:focus-visible { color: var(--orange); }
+.social--big a:hover .social__icon { transform: rotate(-8deg) scale(1.08); }
+.social--big a:hover small { color: var(--ink-dim); }
+.social--big a:focus-visible { outline: 1px dashed var(--orange); outline-offset: 6px; }
+
+.social--small { display: flex; gap: 22px; margin-left: auto; }
+.social--small a {
+  color: var(--ink-dim);
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(var(--orange), var(--orange)) left bottom / 0 1px no-repeat;
+  padding-bottom: 3px;
+  transition: color .3s, background-size .4s var(--ease);
+}
+.social--small a:hover, .social--small a:focus-visible { color: var(--orange); background-size: 100% 1px; }
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
@@ -1308,6 +1379,8 @@ html.intro-pending .hero__title img { --sweep: -8%; }
   .why__text { padding: var(--section-pad) 16px 20px; }
 
   .form { grid-template-columns: 1fr; }
+  .follow__grid { grid-template-columns: 1fr; }
+  .social--small { margin-left: 0; width: 100%; }
 }
 
 @media (hover: none) {

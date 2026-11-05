@@ -34,6 +34,8 @@ Messages go to **avromi@me.com** through [FormSubmit](https://formsubmit.co), a 
 
 Each email has the subject "MY WAR website — new message". Replying goes straight to the sender, because FormSubmit uses the visitor's `email` field as the reply-to address. A hidden `_honey` field quietly drops spam bots.
 
+**Subscribe form (Follow section):** uses the same FormSubmit address. Each sign-up arrives as an email with the subject "MY WAR website — new subscriber", which you collect into your mailing list. If you later move to a newsletter service (Mailchimp, Buttondown, Substack…), point `#subscribe-form` at that service instead. The Instagram and Facebook links are in the Follow section and the footer.
+
 ## Preview locally
 
 ```bash
