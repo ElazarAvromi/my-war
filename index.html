@@ -685,13 +685,12 @@
             <!-- honeypot: humans never see or fill this -->
             <div class="hp" aria-hidden="true">
               <label for="s-gotcha">Leave this empty</label>
-              <input id="s-gotcha" name="_honey" type="text" tabindex="-1" autocomplete="off">
+              <input id="s-gotcha" name="botcheck" type="text" tabindex="-1" autocomplete="off">
             </div>
-            <!-- FormSubmit options -->
-            <input type="hidden" name="_subject" value="MY WAR website — new subscriber">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="type" value="Subscribe to series updates">
+            <!-- Web3Forms options (access key is added from CONFIG in js/main.js) -->
+            <input type="hidden" name="subject" value="MY WAR website — new subscriber">
+            <input type="hidden" name="from_name" value="MY WAR website">
+            <input type="hidden" name="request" value="Subscribe to series updates">
             <button class="send" type="submit" data-cursor>
               <span class="hand">Subscribe</span>
               <svg viewBox="0 0 80 30" aria-hidden="true"><path pathLength="1" d="M2 15 C 26 12, 50 17, 74 15 M64 7 L76 15 L64 23"/></svg>
@@ -762,12 +761,11 @@
         <!-- honeypot: humans never see or fill this -->
         <div class="hp" aria-hidden="true">
           <label for="f-gotcha">Leave this empty</label>
-          <input id="f-gotcha" name="_honey" type="text" tabindex="-1" autocomplete="off">
+          <input id="f-gotcha" name="botcheck" type="text" tabindex="-1" autocomplete="off">
         </div>
-        <!-- FormSubmit options -->
-        <input type="hidden" name="_subject" value="MY WAR website — new message">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
+        <!-- Web3Forms options (access key is added from CONFIG in js/main.js) -->
+        <input type="hidden" name="subject" value="MY WAR website — new message">
+        <input type="hidden" name="from_name" value="MY WAR website">
         <div class="form__actions reveal">
           <button class="send" type="submit" data-cursor>
             <span class="hand">Send</span>

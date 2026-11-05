@@ -24,17 +24,17 @@ Each player shows a poster still and only loads the video when someone presses p
 
 **Episodes 1–3:** password-protected Vimeo videos. The Vimeo player shows its own password screen inside the frame, so the password is managed in Vimeo (video → Privacy → Password), not on this site. The play buttons are labelled "Private screening · password required". To add Episode 4 later, copy an episode section and set its `vimeo:` ID.
 
-### 2. Contact form
-Messages go to **avromi@me.com** through [FormSubmit](https://formsubmit.co), a free relay service. There's no account to create; the address is set in `CONFIG.FORM_ENDPOINT` in `js/main.js`.
+### 2. Contact + subscribe forms
+Both forms are delivered by [Web3Forms](https://web3forms.com) (free plan, 250 submissions/month) to the inbox set in the Web3Forms dashboard (currently **infoavromi@gmail.com**; change it at app.web3forms.com → My First Form → Settings → Recipient Emails). The form access key is in `CONFIG.WEB3FORMS_KEY` at the top of `js/main.js`. The key is public by design: it can only send mail to that inbox.
 
-**Activate it once:**
-1. Put the site online (or open it locally) and send a test message from the form.
-2. FormSubmit emails avromi@me.com an activation link. Click it. Until you do, nothing is delivered and the form shows an error.
-3. Optional: the activation email also gives you a random alias. Put that in place of the email address (`https://formsubmit.co/ajax/<alias>`) so the address isn't visible in the page source.
+- Contact messages arrive with the subject "MY WAR website — new message"; replying goes straight to the sender.
+- Subscribe sign-ups arrive with the subject "MY WAR website — new subscriber". You collect these into your mailing list (or later point `#subscribe-form` at a newsletter service).
+- A hidden `botcheck` field quietly drops spam bots.
+- If sending fails (no key, network or service down), visitors are offered a pre-filled email to avromi@me.com instead, so no message is lost.
 
-Each email has the subject "MY WAR website — new message". Replying goes straight to the sender, because FormSubmit uses the visitor's `email` field as the reply-to address. A hidden `_honey` field quietly drops spam bots.
+(The forms used FormSubmit until November 2026; it went down, so they were moved to Web3Forms.)
 
-**Subscribe form (Follow section):** uses the same FormSubmit address. Each sign-up arrives as an email with the subject "MY WAR website — new subscriber", which you collect into your mailing list. If you later move to a newsletter service (Mailchimp, Buttondown, Substack…), point `#subscribe-form` at that service instead. The Instagram and Facebook links are in the Follow section and the footer.
+The Instagram and Facebook links are in the Follow section and the footer.
 
 ## Preview locally
 

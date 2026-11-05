@@ -6,13 +6,39 @@
    ========================================================================== */
 
 const CONFIG = {
-  // Messages are relayed by FormSubmit (https://formsubmit.co) to this inbox.
-  // After activating, you can swap the email for the random alias FormSubmit gives you,
-  // e.g. "https://formsubmit.co/ajax/1a2b3c4d5e6f…", so the address isn't in the page source.
-  FORM_ENDPOINT: "https://formsubmit.co/ajax/avromi@me.com",
+  // Contact + subscribe forms are delivered by Web3Forms (https://web3forms.com); the recipient inbox is set in the Web3Forms dashboard.
+  // The access key is public by design (it can only send mail to the owner's inbox).
+  // Get it at web3forms.com: enter the email address, the key arrives by email.
+  WEB3FORMS_KEY: "877b35fa-adb7-4336-a9f0-60af7d308eb4",
+  FORM_ENDPOINT: "https://api.web3forms.com/submit",
   // Fallback shown to visitors if sending fails (opens their mail app, message pre-filled)
   CONTACT_EMAIL: "avromi@me.com",
 };
+
+/* Send a form to Web3Forms. Resolves on success, throws on any failure
+   (no key yet, network down, service error, or no answer within 15 s). */
+async function sendForm(form) {
+  if (!/^[0-9a-f-]{30,}$/i.test(CONFIG.WEB3FORMS_KEY)) throw new Error("Web3Forms access key not set");
+  const data = Object.fromEntries(new FormData(form));
+  delete data.botcheck;
+  data.access_key = CONFIG.WEB3FORMS_KEY;
+  if (data.email) data.replyto = data.email;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await fetch(CONFIG.FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+      signal: ctrl.signal,
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.success !== true) throw new Error(json.message || `HTTP ${res.status}`);
+    return json;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -656,7 +682,7 @@ function initEmbeds() {
 }
 
 /* --------------------------------------------------------------------------
-   Contact form (FormSubmit → email)
+   Contact form (Web3Forms → email)
    -------------------------------------------------------------------------- */
 function initForm() {
   const form = $("#contact-form");
@@ -684,7 +710,7 @@ function initForm() {
     e.preventDefault();
 
     // Honeypot: bots fill hidden fields — pretend success, send nothing
-    if (form.elements._honey.value) { say("Thank you — message received.", true); form.reset(); return; }
+    if (form.elements.botcheck.value) { say("Thank you — message received.", true); form.reset(); return; }
 
     let firstBad = null;
     ["name", "email", "message"].forEach((n) => {
@@ -698,14 +724,7 @@ function initForm() {
     btn.disabled = true;
     say("Sending…", true);
     try {
-      const res = await fetch(CONFIG.FORM_ENDPOINT, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-      const data = await res.json().catch(() => ({}));
-      // FormSubmit answers 200 with success "false" (e.g. before the inbox is activated)
-      if (!res.ok || String(data.success) === "false") throw new Error(data.message || `HTTP ${res.status}`);
+      await sendForm(form);
       form.reset();
       say("Thank you — message received.", true);
     } catch (err) {
@@ -722,7 +741,7 @@ function initForm() {
 }
 
 /* --------------------------------------------------------------------------
-   Subscribe (series updates) — FormSubmit, same inbox as the contact form
+   Subscribe (series updates) — Web3Forms, same inbox as the contact form
    -------------------------------------------------------------------------- */
 function initSubscribe() {
   const form = $("#subscribe-form");
@@ -751,7 +770,7 @@ function initSubscribe() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     // Honeypot: bots fill hidden fields — pretend success, send nothing
-    if (form.elements._honey.value) { say("You’re on the list — thank you!", true); form.reset(); return; }
+    if (form.elements.botcheck.value) { say("You’re on the list — thank you!", true); form.reset(); return; }
 
     const value = email.value.trim();
     if (!emailRe.test(value)) {
@@ -764,13 +783,7 @@ function initSubscribe() {
     btn.disabled = true;
     say("Signing you up…", true);
     try {
-      const res = await fetch(CONFIG.FORM_ENDPOINT, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) === "false") throw new Error(data.message || `HTTP ${res.status}`);
+      await sendForm(form);
       form.reset();
       say("You’re on the list — thank you!", true);
     } catch (err) {
